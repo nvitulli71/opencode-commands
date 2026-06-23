@@ -10,7 +10,7 @@ $ARGUMENTS
 
 ## Workflow
 
-Follow these steps in order. YOU MUST NOT MAKE ANY CODE CHANGES OR EDIT ANY EXISTING FILES.
+Follow these steps in order. DO NOT modify any existing source code - only write new plan files in `docs/plans/`.
 
 0. **Clarify ambiguities first.** Before writing the plan, use the `question` tool to ask the user about anything unclear or underspecified:
    - Scope boundaries (what's in vs. out)
