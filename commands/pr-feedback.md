@@ -7,7 +7,20 @@ subtask: true
 
 Generate constructive, empathetic code review feedback for a pull request. Write like a helpful senior engineer, not an automated audit.
 
-### PR Changes (Staged or Branch Diff)
+### Context — Understand the PR's purpose first
+
+Before reviewing, ground yourself in what this PR is trying to accomplish.
+
+**Branch:**
+!`git rev-parse --abbrev-ref HEAD`
+
+**PR Description (if available):**
+!`gh pr view --json title,body 2>/dev/null || echo "No PR description found — infer intent from commits below."`
+
+**Commit History:**
+!`git log --format="%h %s%n%b---" $(git merge-base --fork-point HEAD 2>/dev/null || git merge-base HEAD main 2>/dev/null || git merge-base HEAD master 2>/dev/null)..HEAD 2>/dev/null || echo "No commits found"`
+
+### PR Changes
 
 !`git diff --staged 2>/dev/null || git diff $(git merge-base --fork-point HEAD 2>/dev/null || git merge-base HEAD main 2>/dev/null || git merge-base HEAD master 2>/dev/null)..HEAD -- .`
 
@@ -17,7 +30,9 @@ Generate constructive, empathetic code review feedback for a pull request. Write
 
 ### Task
 
-Write PR review feedback. Structure it as you would write a real PR comment.
+**Step 1: Understand what this PR is trying to do.** Read the PR description and commit messages. What problem is being solved? What's the approach? If context is sparse, infer intent from the changed files and the shape of the diff.
+
+**Step 2: Write PR review feedback based on that understanding.** Evaluate the changes against the stated or inferred goal — don't review in a vacuum. Structure it as you would write a real PR comment.
 
 ### Tone Guidelines
 
